@@ -17,7 +17,7 @@ namespace WPF.ViewModels
         private readonly IMvxNavigationService _navigationService;
         private readonly IEmployeesData _employeesData;
 
-        public IMvxCommand MenuWoindow { get; set; }
+        public IMvxCommand MenuWindow { get; set; }
         public IMvxCommand ShowEmployeesWindow { get; set; }
         public IMvxCommand AddEmployeeWindow { get; set; }
         public IMvxCommand AddEmployee { get; set; }
@@ -25,7 +25,7 @@ namespace WPF.ViewModels
         {
             _navigationService = navigationService;
             _employeesData = employeesData;
-            MenuWoindow = new MvxCommand(GetMenu);
+            MenuWindow = new MvxCommand(GetMenu);
             ShowEmployeesWindow = new MvxCommand(GetShowEmployee);
             AddEmployeeWindow = new MvxCommand(GetAddEmployee);
             AddEmployee = new MvxCommand(AddNewEmployee);
