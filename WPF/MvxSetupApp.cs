@@ -12,7 +12,11 @@ namespace WPF.Core
     {
         public override void Initialize()
         {
-            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<DbContext>(() => new EmployeeContext());
+            Mvx.IoCProvider.RegisterType<EmployeeContext>(() => new EmployeeContext());
+
+            //Checking if database was created
+            var context = Mvx.IoCProvider.Create<EmployeeContext>();
+            context.Database.EnsureCreated();
 
             RegisterAppStart<ShallViewModel>();
         }
