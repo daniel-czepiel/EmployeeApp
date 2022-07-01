@@ -14,14 +14,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WPF
+namespace WPF.View
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Logika interakcji dla klasy ShallView.xaml
     /// </summary>
-    public partial class MainWindow : MvxWindow
+    public partial class ShallView : MvxWpfView
     {
-        public MainWindow()
+        public ShallView()
         {
             InitializeComponent();
         }
