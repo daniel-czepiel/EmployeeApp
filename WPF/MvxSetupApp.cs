@@ -1,5 +1,6 @@
 ﻿using EmployeeApp.Data.DataAccess;
 using EmployeeApp.Data.Models;
+using EmployeeApp.Library.Helpers;
 using Microsoft.EntityFrameworkCore;
 using MvvmCross;
 using MvvmCross.IoC;
@@ -12,7 +13,8 @@ namespace WPF.Core
     {
         public override void Initialize()
         {
-            Mvx.IoCProvider.RegisterType<EmployeeContext>(() => new EmployeeContext());
+            Mvx.IoCProvider.RegisterType<EmployeeContext>();
+            Mvx.IoCProvider.RegisterType<IEmployeesData, EmployeesData>();
 
             //Checking if database was created
             var context = Mvx.IoCProvider.Create<EmployeeContext>();

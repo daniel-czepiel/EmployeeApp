@@ -23,9 +23,9 @@
                 <RowDefinition Height="40"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
-            <Button mvx:Bi.nd="Command Menu" Content="Menu" Grid.Row="1"></Button>
-            <Button mvx:Bi.nd="Command ShowEmployees" Content="Show employees" Grid.Row="2"></Button>
-            <Button mvx:Bi.nd="Command AddEmployee" Content="Add employee" Grid.Row="3"></Button>
+            <Button mvx:Bi.nd="Command MenuWindow" Content="Menu" Grid.Row="1"></Button>
+            <Button mvx:Bi.nd="Command ShowEmployeesWindow" Content="Show employees" Grid.Row="2"></Button>
+            <Button mvx:Bi.nd="Command AddEmployeeWindow" Content="Add employee" Grid.Row="3"></Button>
         </Grid>
         <Grid Grid.Column="1">
             <Grid.ColumnDefinitions>
@@ -39,9 +39,24 @@
                 <RowDefinition Height="auto"></RowDefinition>
                 <RowDefinition Height="auto"></RowDefinition>
                 <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="10"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="1" Grid.Column="1" Text="New employee"></TextBlock>
+            <TextBlock Grid.Row="1" Grid.Column="1" Text="First name"></TextBlock>
+            <TextBox Text="{Binding Firstname, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" MinWidth="300" Grid.Row="2" Grid.Column="1"></TextBox>
+            <TextBlock Grid.Row="3" Grid.Column="1" Text="Last name"></TextBlock>
+            <TextBox Text="{Binding Lastname, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" MinWidth="300" Grid.Row="4" Grid.Column="1"></TextBox>
+            <TextBlock Grid.Row="5" Grid.Column="1" Text="Email"></TextBlock>
+            <TextBox Text="{Binding Email, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" MinWidth="300" Grid.Row="6" Grid.Column="1"></TextBox>
+            <TextBlock Grid.Row="7" Grid.Column="1" Text="Position"></TextBlock>
+            <TextBox Text="{Binding Position, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" MinWidth="300" Grid.Row="8" Grid.Column="1"></TextBox>
+            <Button mvx:Bi.nd="Command AddEmployee" IsEnabled="{Binding CanAddPerson, UpdateSourceTrigger=PropertyChanged}" Content="Add" Grid.Column="1" Grid.Row="10"></Button>
         </Grid>
     </Grid>
 </view:MvxWpfView>

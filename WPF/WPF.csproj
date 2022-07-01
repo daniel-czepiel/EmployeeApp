@@ -29,6 +29,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\EmployeeApp.Data\EmployeeApp.Data.csproj" />
+    <ProjectReference Include="..\EmployeeApp.Library\EmployeeApp.Library.csproj" />
   </ItemGroup>
 
 </Project>
