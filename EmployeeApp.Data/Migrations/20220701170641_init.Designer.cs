@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EmployeeApp.Data.Migrations
 {
     [DbContext(typeof(EmployeeContext))]
-    [Migration("20220701152523_init")]
+    [Migration("20220701170641_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -96,9 +96,6 @@ namespace EmployeeApp.Data.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("Age")
-                        .HasColumnType("int");
 
                     b.Property<string>("Discriminator")
                         .IsRequired()

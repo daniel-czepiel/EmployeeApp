@@ -16,7 +16,5 @@ namespace EmployeeApp.Data.Models
         [Required]
         [MaxLength(50)]
         public string? LastName { get; set; }
-        [Required]
-        public int Age { get; set; }
     }
 }
