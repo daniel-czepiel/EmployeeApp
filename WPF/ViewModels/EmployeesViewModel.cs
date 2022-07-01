@@ -1,16 +1,21 @@
 ﻿using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace WPF.ViewModels
 {
-    public class ShallViewModel : MvxViewModel
+    public class EmployeesViewModel : MvxViewModel
     {
         private readonly IMvxNavigationService _navigationService;
         public IMvxCommand Menu { get; set; }
         public IMvxCommand ShowEmployees { get; set; }
         public IMvxCommand AddEmployee { get; set; }
-        public ShallViewModel(IMvxNavigationService navigationService)
+        public EmployeesViewModel(IMvxNavigationService navigationService)
         {
             _navigationService = navigationService;
             Menu = new MvxCommand(GetMenu);
