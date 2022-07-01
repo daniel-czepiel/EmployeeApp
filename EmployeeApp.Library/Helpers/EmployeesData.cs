@@ -1,10 +1,8 @@
 ﻿using EmployeeApp.Data.DataAccess;
 using EmployeeApp.Data.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using EmployeeApp.Library.Models;
+using Mapster;
+using Microsoft.EntityFrameworkCore;
 
 namespace EmployeeApp.Library.Helpers
 {
@@ -32,9 +30,18 @@ namespace EmployeeApp.Library.Helpers
             await _context.Employees.AddAsync(newEmployee);
             _context.SaveChanges();
         }
-        public IEnumerable<Employee> GetAllEmployees()
+        public IEnumerable<EmployeeModel> GetAllEmployees()
         {
-            return _context.Employees;
+
+            var tac = new TypeAdapterConfig()
+                .NewConfig<Employee, EmployeeModel>()
+                .Map(dest => dest.FirstName, source => source.FirstName)
+                .Map(dest => dest.LastName, source => source.LastName)
+                .Map(dest => dest.Email, source => source.EmailAdressess.FirstOrDefault(new Email() { EmailAddress = "" }).EmailAddress)
+                .Map(dest => dest.Position, source => source.Position)
+                .Config;
+
+            return _context.Employees.Include(x => x.EmailAdressess).Adapt<IEnumerable<EmployeeModel>>(tac);
         }
         public void AddEmail(int id, string emailAddress)
         {

@@ -1,28 +1,29 @@
-﻿using MvvmCross.Commands;
+﻿using EmployeeApp.Library.Helpers;
+using EmployeeApp.Library.Models;
+using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 
 namespace WPF.ViewModels
 {
     public class EmployeesViewModel : MvxViewModel
     {
         private readonly IMvxNavigationService _navigationService;
+        private readonly IEmployeesData _data;
+
         public IMvxCommand MenuWindow { get; set; }
         public IMvxCommand ShowEmployeesWindow { get; set; }
         public IMvxCommand AddEmployeeWindow { get; set; }
-        public EmployeesViewModel(IMvxNavigationService navigationService)
+        public EmployeesViewModel(IMvxNavigationService navigationService, IEmployeesData data)
         {
             _navigationService = navigationService;
+            _data = data;
             MenuWindow = new MvxCommand(GetMenu);
             ShowEmployeesWindow = new MvxCommand(GetShowEmployee);
             AddEmployeeWindow = new MvxCommand(GetAddEmployee);
+            Employees = new ObservableCollection<EmployeeModel>(_data.GetAllEmployees());
         }
-
         #region Menu methods
         public async void GetMenu() =>
             await _navigationService.Navigate<ShallViewModel>();
@@ -31,5 +32,18 @@ namespace WPF.ViewModels
         public async void GetAddEmployee() =>
             await _navigationService.Navigate<AddNewPersonViewModel>();
         #endregion
+
+        private ObservableCollection<EmployeeModel> _employees = new ObservableCollection<EmployeeModel>();
+        public ObservableCollection<EmployeeModel> Employees
+        {
+            get
+            {
+                return _employees;
+            }
+            set
+            {
+                SetProperty(ref _employees, value);
+            }
+        }
     }
 }
