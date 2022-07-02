@@ -7,6 +7,8 @@ namespace EmployeeApp.Library.Helpers
     {
         void AddEmail(int id, string emailAddress);
         Task AddNewEmployee(string firstName, string lastName, string email, string position);
+        void DeleteEmployee(int id);
         IEnumerable<EmployeeModel> GetAllEmployees();
+        Employee GetEmployeeById(int id);
     }
 }

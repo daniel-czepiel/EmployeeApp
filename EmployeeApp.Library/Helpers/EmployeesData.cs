@@ -35,6 +35,7 @@ namespace EmployeeApp.Library.Helpers
 
             var tac = new TypeAdapterConfig()
                 .NewConfig<Employee, EmployeeModel>()
+                .Map(dest => dest.Id, source => source.Id)
                 .Map(dest => dest.FirstName, source => source.FirstName)
                 .Map(dest => dest.LastName, source => source.LastName)
                 .Map(dest => dest.Email, source => source.EmailAdressess.FirstOrDefault(new Email() { EmailAddress = "" }).EmailAddress)
@@ -50,6 +51,15 @@ namespace EmployeeApp.Library.Helpers
                 EmailAddress = emailAddress
             };
             _context.Employees.Single(x => x.Id == id).EmailAdressess.Add(email);
+            _context.SaveChanges();
+        }
+        public Employee GetEmployeeById(int id)
+        {
+            return _context.Employees.Single(x => x.Id == id);
+        }
+        public void DeleteEmployee(int id)
+        {
+            _context.Employees.Remove(GetEmployeeById(id));
             _context.SaveChanges();
         }
     }

@@ -15,6 +15,7 @@ namespace WPF.ViewModels
         public IMvxCommand MenuWindow { get; set; }
         public IMvxCommand ShowEmployeesWindow { get; set; }
         public IMvxCommand AddEmployeeWindow { get; set; }
+        public IMvxCommand DeleteEmployeeCommand { get; set; }
         public EmployeesViewModel(IMvxNavigationService navigationService, IEmployeesData data)
         {
             _navigationService = navigationService;
@@ -22,6 +23,7 @@ namespace WPF.ViewModels
             MenuWindow = new MvxCommand(GetMenu);
             ShowEmployeesWindow = new MvxCommand(GetShowEmployee);
             AddEmployeeWindow = new MvxCommand(GetAddEmployee);
+            DeleteEmployeeCommand = new MvxCommand(DeleteEmployee);
             Employees = new ObservableCollection<EmployeeModel>(_data.GetAllEmployees());
         }
         #region Menu methods
@@ -45,5 +47,25 @@ namespace WPF.ViewModels
                 SetProperty(ref _employees, value);
             }
         }
+
+        private EmployeeModel employeeToDell;
+
+        public EmployeeModel EmployeeToDell
+        {
+            get { return employeeToDell; }
+            set 
+            {
+                employeeToDell = value;
+                RaisePropertyChanged(() => CanDelete);
+            }
+        }
+        public bool CanDelete => EmployeeToDell != null;
+        public void DeleteEmployee()
+        {
+            _data.DeleteEmployee(EmployeeToDell.Id);
+            Employees = new ObservableCollection<EmployeeModel>(_data.GetAllEmployees());
+            RaisePropertyChanged(() => Employees);
+        }
+
     }
 }
