@@ -1,7 +1,7 @@
 ﻿<view:MvxWpfView
         xmlns:view="clr-namespace:MvvmCross.Platforms.Wpf.Views;assembly=MvvmCross.Platforms.Wpf"
         xmlns:mvx="clr-namespace:MvvmCross.Platforms.Wpf.Binding;assembly=MvvmCross.Platforms.Wpf"
-             x:Class="WPF.View.ShallView"
+             x:Class="WPF.View.AddNewLiderView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -44,9 +44,22 @@
                 <RowDefinition Height="auto"></RowDefinition>
                 <RowDefinition Height="auto"></RowDefinition>
                 <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="10"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="1" Grid.Column="1" Text="Menu"></TextBlock>
+            <TextBlock Grid.Row="1" Grid.Column="1" Text="First name"></TextBlock>
+            <TextBox Text="{Binding Firstname, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" MinWidth="300" Grid.Row="2" Grid.Column="1"></TextBox>
+            <TextBlock Grid.Row="3" Grid.Column="1" Text="Last name"></TextBlock>
+            <TextBox Text="{Binding Lastname, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" MinWidth="300" Grid.Row="4" Grid.Column="1"></TextBox>
+            <TextBlock Grid.Row="5" Grid.Column="1" Text="Email"></TextBlock>
+            <TextBox Text="{Binding Email, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" MinWidth="300" Grid.Row="6" Grid.Column="1"></TextBox>
+            <Button mvx:Bi.nd="Command AddLider" IsEnabled="{Binding CanAddPerson, UpdateSourceTrigger=PropertyChanged}" Content="Add" Grid.Column="1" Grid.Row="10"></Button>
         </Grid>
     </Grid>
-</view:MvxWpfView>
+    </view:MvxWpfView>

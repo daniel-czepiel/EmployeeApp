@@ -1,39 +1,32 @@
-﻿using EmployeeApp.Data.DataAccess;
-using EmployeeApp.Data.Models;
-using EmployeeApp.Library.Helpers;
+﻿using EmployeeApp.Library.Helpers;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WPF.ViewModels
 {
-    public class AddNewPersonViewModel : MvxViewModel
+    public class AddNewLiderViewModel : MvxViewModel
     {
         private readonly IMvxNavigationService _navigationService;
-        private readonly IEmployeesData _employeesData;
+        private readonly ILidersData _lidersData;
 
         public IMvxCommand MenuWindow { get; set; }
         public IMvxCommand ShowEmployeesWindow { get; set; }
         public IMvxCommand AddEmployeeWindow { get; set; }
-        public IMvxCommand AddEmployee { get; set; }
         public IMvxCommand ShowLidersWindow { get; set; }
         public IMvxCommand AddLiderWindow { get; set; }
+        public IMvxCommand AddLider { get; set; }
         public IMvxCommand AddEmployeeToLiderWindow { get; set; }
-        public AddNewPersonViewModel(IMvxNavigationService navigationService, IEmployeesData employeesData)
+        public AddNewLiderViewModel(IMvxNavigationService navigationService, ILidersData lidersData)
         {
             _navigationService = navigationService;
-            _employeesData = employeesData;
+            _lidersData = lidersData;
             MenuWindow = new MvxCommand(GetMenu);
             ShowEmployeesWindow = new MvxCommand(GetShowEmployee);
             AddEmployeeWindow = new MvxCommand(GetAddEmployee);
-            AddEmployee = new MvxCommand(AddNewEmployee);
             ShowLidersWindow = new MvxCommand(GetShowLiders);
             AddLiderWindow = new MvxCommand(GetAddLider);
+            AddLider = new MvxCommand(AddNewLider);
             AddEmployeeToLiderWindow = new MvxCommand(GetAddEmployeeToLiderWindow);
         }
 
@@ -50,25 +43,23 @@ namespace WPF.ViewModels
             await _navigationService.Navigate<LidersViewModel>();
         public async void GetAddEmployeeToLiderWindow() =>
             await _navigationService.Navigate<AddEmployeeToLiderViewModel>();
-
         #endregion
-
         #region Propertys
         private string firstname;
         public string Firstname
         {
             get { return firstname; }
-            set 
+            set
             {
                 firstname = value;
                 RaisePropertyChanged(() => CanAddPerson);
             }
         }
         private string lastname;
-        public string Lastname 
-        { 
+        public string Lastname
+        {
             get { return lastname; }
-            set 
+            set
             {
                 lastname = value;
                 RaisePropertyChanged(() => CanAddPerson);
@@ -83,21 +74,12 @@ namespace WPF.ViewModels
                 email = value;
             }
         }
-        private string position;
-        public string Position
-        {
-            get { return position; }
-            set
-            {
-                position = value;
-                RaisePropertyChanged(() => CanAddPerson);
-            }
-        }
-        public bool CanAddPerson => Lastname.Length > 2 && Firstname.Length > 2 && Position.Length > 2;
+
+        public bool CanAddPerson => Lastname.Length > 2 && Firstname.Length > 2;
         #endregion
-        public async void AddNewEmployee()
+        public async void AddNewLider()
         {
-            await _employeesData.AddNewEmployee(Firstname, Lastname, Email, Position);
+            await _lidersData.AddNewLider(Firstname, Lastname, Email);
         }
     }
 }

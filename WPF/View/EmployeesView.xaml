@@ -21,11 +21,16 @@
                 <RowDefinition Height="40"></RowDefinition>
                 <RowDefinition Height="40"></RowDefinition>
                 <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
             <Button mvx:Bi.nd="Command MenuWindow" Content="Menu" Grid.Row="1"></Button>
             <Button mvx:Bi.nd="Command ShowEmployeesWindow" Content="Show employees" Grid.Row="2"></Button>
             <Button mvx:Bi.nd="Command AddEmployeeWindow" Content="Add employee" Grid.Row="3"></Button>
+            <Button mvx:Bi.nd="Command ShowLidersWindow" Content="Show liders" Grid.Row="4"></Button>
+            <Button mvx:Bi.nd="Command AddLiderWindow" Content="Add lider" Grid.Row="5"></Button>
+            <Button mvx:Bi.nd="Command AddEmployeeToLiderWindow" Content="Add employee to lider" Grid.Row="6"></Button>
         </Grid>
         <Grid Grid.Column="1">
             <Grid.ColumnDefinitions>
@@ -37,7 +42,7 @@
                 <RowDefinition Height="auto"></RowDefinition>
             </Grid.RowDefinitions>
             <DataGrid Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Employees}" SelectedItem="{Binding EmployeeToDell, Mode=OneWayToSource}" AutoGenerateColumns="True" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True"></DataGrid>
-            <Button mvx:Bi.nd="Command DeleteEmployeeCommand" Grid.Column="1" Grid.Row="2" IsEnabled="{Binding CanDelete}">Delete Employee</Button>
+            <!--<Button mvx:Bi.nd="Command DeleteEmployeeCommand" Grid.Column="1" Grid.Row="2" IsEnabled="{Binding CanDelete}">Delete Employee</Button>-->
         </Grid>
     </Grid>
 </view:MvxWpfView>

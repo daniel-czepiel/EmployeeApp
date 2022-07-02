@@ -7,29 +7,27 @@ using System.Collections.ObjectModel;
 
 namespace WPF.ViewModels
 {
-    public class EmployeesViewModel : MvxViewModel
+    public class LidersViewModel : MvxViewModel
     {
         private readonly IMvxNavigationService _navigationService;
-        private readonly IEmployeesData _data;
+        private readonly ILidersData _liders;
 
         public IMvxCommand MenuWindow { get; set; }
         public IMvxCommand ShowEmployeesWindow { get; set; }
         public IMvxCommand AddEmployeeWindow { get; set; }
-        public IMvxCommand DeleteEmployeeCommand { get; set; }
         public IMvxCommand ShowLidersWindow { get; set; }
         public IMvxCommand AddLiderWindow { get; set; }
         public IMvxCommand AddEmployeeToLiderWindow { get; set; }
-        public EmployeesViewModel(IMvxNavigationService navigationService, IEmployeesData data)
+        public LidersViewModel(IMvxNavigationService navigationService, ILidersData liders)
         {
             _navigationService = navigationService;
-            _data = data;
+            _liders = liders;
             MenuWindow = new MvxCommand(GetMenu);
             ShowEmployeesWindow = new MvxCommand(GetShowEmployee);
             AddEmployeeWindow = new MvxCommand(GetAddEmployee);
-            DeleteEmployeeCommand = new MvxCommand(DeleteEmployee);
-            Employees = new ObservableCollection<EmployeeModel>(_data.GetAllEmployees());
             ShowLidersWindow = new MvxCommand(GetShowLiders);
             AddLiderWindow = new MvxCommand(GetAddLider);
+            Liders = new ObservableCollection<LiderModel>(_liders.GetAllLiders());
             AddEmployeeToLiderWindow = new MvxCommand(GetAddEmployeeToLiderWindow);
         }
 
@@ -45,39 +43,14 @@ namespace WPF.ViewModels
         public async void GetShowLiders() =>
             await _navigationService.Navigate<LidersViewModel>();
         public async void GetAddEmployeeToLiderWindow() =>
-             await _navigationService.Navigate<AddEmployeeToLiderViewModel>();
+            await _navigationService.Navigate<AddEmployeeToLiderViewModel>();
         #endregion
+        private ObservableCollection<LiderModel> liders;
 
-        private ObservableCollection<EmployeeModel> _employees = new ObservableCollection<EmployeeModel>();
-        public ObservableCollection<EmployeeModel> Employees
+        public ObservableCollection<LiderModel> Liders
         {
-            get
-            {
-                return _employees;
-            }
-            set
-            {
-                SetProperty(ref _employees, value);
-            }
-        }
-
-        private EmployeeModel employeeToDell;
-
-        public EmployeeModel EmployeeToDell
-        {
-            get { return employeeToDell; }
-            set 
-            {
-                employeeToDell = value;
-                RaisePropertyChanged(() => CanDelete);
-            }
-        }
-        public bool CanDelete => EmployeeToDell != null;
-        public void DeleteEmployee()
-        {
-            _data.DeleteEmployee(EmployeeToDell.Id);
-            Employees = new ObservableCollection<EmployeeModel>(_data.GetAllEmployees());
-            RaisePropertyChanged(() => Employees);
+            get { return liders; }
+            set { SetProperty(ref liders, value); }
         }
 
     }
