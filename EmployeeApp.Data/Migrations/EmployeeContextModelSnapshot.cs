@@ -72,16 +72,11 @@ namespace EmployeeApp.Data.Migrations
                     b.Property<int?>("LiderId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("LiderId1")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("EmployeeId");
 
                     b.HasIndex("LiderId");
-
-                    b.HasIndex("LiderId1");
 
                     b.ToTable("EmailAdressess");
                 });
@@ -119,10 +114,15 @@ namespace EmployeeApp.Data.Migrations
                 {
                     b.HasBaseType("EmployeeApp.Data.Models.PersonBase");
 
+                    b.Property<int?>("LiderId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Position")
                         .IsRequired()
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
+
+                    b.HasIndex("LiderId");
 
                     b.HasDiscriminator().HasValue("Employee");
                 });
@@ -143,10 +143,13 @@ namespace EmployeeApp.Data.Migrations
                     b.HasOne("EmployeeApp.Data.Models.Lider", null)
                         .WithMany("EmailAdressess")
                         .HasForeignKey("LiderId");
+                });
 
+            modelBuilder.Entity("EmployeeApp.Data.Models.Employee", b =>
+                {
                     b.HasOne("EmployeeApp.Data.Models.Lider", null)
                         .WithMany("Employees")
-                        .HasForeignKey("LiderId1");
+                        .HasForeignKey("LiderId");
                 });
 
             modelBuilder.Entity("EmployeeApp.Data.Models.Employee", b =>

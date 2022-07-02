@@ -2,7 +2,7 @@
 {
     public class Lider : PersonBase
     {
-        public List<Email> Employees { get; set; } = new List<Email>();
+        public List<Employee> Employees { get; set; } = new List<Employee>();
         public List<Email> EmailAdressess { get; set; } = new List<Email>();
     }
 }
