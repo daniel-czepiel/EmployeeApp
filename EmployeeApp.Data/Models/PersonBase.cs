@@ -9,6 +9,7 @@ namespace EmployeeApp.Data.Models
 {
     public class PersonBase : IPersonBase
     {
+        [Key]
         public int Id { get; set; }
         [Required]
         [MaxLength(50)]

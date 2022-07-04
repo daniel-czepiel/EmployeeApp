@@ -8,7 +8,7 @@ namespace EmployeeApp.Data.DataAccess
         //public EmployeeContext(DbContextOptions options) : base(options) { }
         public DbSet<PersonBase> People { get; set; }
         public DbSet<Employee> Employees { get; set; }
-        public DbSet<Lider> Liders { get; set; }
+        public DbSet<Leader> Leaders { get; set; }
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Email> EmailAdressess { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

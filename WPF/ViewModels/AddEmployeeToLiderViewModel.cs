@@ -15,7 +15,7 @@ namespace WPF.ViewModels
     public class AddEmployeeToLiderViewModel : MvxViewModel
     {
         private readonly IMvxNavigationService _navigationService;
-        private readonly ILidersData _lidersData;
+        private readonly ILeadersData _lidersData;
         private readonly IEmployeesData _employeesData;
 
         public IMvxCommand MenuWindow { get; set; }
@@ -26,7 +26,7 @@ namespace WPF.ViewModels
         public IMvxCommand AddEmployeeToLiderWindow { get; set; }
         public IMvxCommand AddETL { get; set; }
         public AddEmployeeToLiderViewModel(IMvxNavigationService navigationService,
-            ILidersData lidersData, IEmployeesData employeesData)
+            ILeadersData lidersData, IEmployeesData employeesData)
         {
             _navigationService = navigationService;
             _lidersData = lidersData;
@@ -38,7 +38,7 @@ namespace WPF.ViewModels
             AddLiderWindow = new MvxCommand(GetAddLider);
             AddEmployeeToLiderWindow = new MvxCommand(GetAddEmployeeToLiderWindow);
             Employees = new ObservableCollection<int>(_employeesData.GetAllEmployees().Select(x => x.Id));
-            Liders = new ObservableCollection<int>(_lidersData.GetAllLiders().Select(x => x.Id));
+            Liders = new ObservableCollection<int>(_lidersData.GetAllLeaders().Select(x => x.Id));
             AddETL = new MvxCommand(Add);
         }
         #region Menu methods
@@ -101,7 +101,7 @@ namespace WPF.ViewModels
         public bool CanAdd => SelectedEmployeeId != -1 && SelectedLiderId != -1;
         public void Add()
         {
-            _lidersData.AddEmployeeToLider(SelectedEmployeeId, SelectedLiderId);
+            _lidersData.AddEmployeeToLeader(SelectedEmployeeId, SelectedLiderId);
         }
     }
 }

@@ -69,14 +69,14 @@ namespace EmployeeApp.Data.Migrations
                     b.Property<int?>("EmployeeId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("LiderId")
+                    b.Property<int?>("LeaderId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("EmployeeId");
 
-                    b.HasIndex("LiderId");
+                    b.HasIndex("LeaderId");
 
                     b.ToTable("EmailAdressess");
                 });
@@ -114,7 +114,7 @@ namespace EmployeeApp.Data.Migrations
                 {
                     b.HasBaseType("EmployeeApp.Data.Models.PersonBase");
 
-                    b.Property<int?>("LiderId")
+                    b.Property<int?>("LeaderId")
                         .HasColumnType("int");
 
                     b.Property<string>("Position")
@@ -122,16 +122,16 @@ namespace EmployeeApp.Data.Migrations
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
-                    b.HasIndex("LiderId");
+                    b.HasIndex("LeaderId");
 
                     b.HasDiscriminator().HasValue("Employee");
                 });
 
-            modelBuilder.Entity("EmployeeApp.Data.Models.Lider", b =>
+            modelBuilder.Entity("EmployeeApp.Data.Models.Leader", b =>
                 {
                     b.HasBaseType("EmployeeApp.Data.Models.PersonBase");
 
-                    b.HasDiscriminator().HasValue("Lider");
+                    b.HasDiscriminator().HasValue("Leader");
                 });
 
             modelBuilder.Entity("EmployeeApp.Data.Models.Email", b =>
@@ -140,16 +140,16 @@ namespace EmployeeApp.Data.Migrations
                         .WithMany("EmailAdressess")
                         .HasForeignKey("EmployeeId");
 
-                    b.HasOne("EmployeeApp.Data.Models.Lider", null)
+                    b.HasOne("EmployeeApp.Data.Models.Leader", null)
                         .WithMany("EmailAdressess")
-                        .HasForeignKey("LiderId");
+                        .HasForeignKey("LeaderId");
                 });
 
             modelBuilder.Entity("EmployeeApp.Data.Models.Employee", b =>
                 {
-                    b.HasOne("EmployeeApp.Data.Models.Lider", null)
+                    b.HasOne("EmployeeApp.Data.Models.Leader", null)
                         .WithMany("Employees")
-                        .HasForeignKey("LiderId");
+                        .HasForeignKey("LeaderId");
                 });
 
             modelBuilder.Entity("EmployeeApp.Data.Models.Employee", b =>
@@ -157,7 +157,7 @@ namespace EmployeeApp.Data.Migrations
                     b.Navigation("EmailAdressess");
                 });
 
-            modelBuilder.Entity("EmployeeApp.Data.Models.Lider", b =>
+            modelBuilder.Entity("EmployeeApp.Data.Models.Leader", b =>
                 {
                     b.Navigation("EmailAdressess");
 

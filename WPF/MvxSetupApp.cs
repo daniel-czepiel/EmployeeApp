@@ -15,7 +15,7 @@ namespace WPF.Core
         {
             Mvx.IoCProvider.RegisterType<EmployeeContext>();
             Mvx.IoCProvider.RegisterType<IEmployeesData, EmployeesData>();
-            Mvx.IoCProvider.RegisterType<ILidersData, LidersData>();
+            Mvx.IoCProvider.RegisterType<ILeadersData, LeadersData>();
 
             //Checking if database was created
             var context = Mvx.IoCProvider.Create<EmployeeContext>();

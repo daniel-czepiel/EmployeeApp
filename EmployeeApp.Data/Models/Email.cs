@@ -9,6 +9,7 @@ namespace EmployeeApp.Data.Models
 {
     public class Email : IEmail
     {
+        [Key]
         public int Id { get; set; }
         [Required]
         [MaxLength(50)]

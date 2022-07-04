@@ -93,7 +93,7 @@ namespace WPF.ViewModels
                 RaisePropertyChanged(() => CanAddPerson);
             }
         }
-        public bool CanAddPerson => Lastname.Length > 2 && Firstname.Length > 2 && Position.Length > 2;
+        public bool CanAddPerson => Lastname.Length > 2 && Firstname.Length > 2;
         #endregion
         public async void AddNewEmployee()
         {

@@ -10,6 +10,7 @@ namespace EmployeeApp.Data.Models
 {
     public class Address : IAddress
     {
+        [Key]
         public int Id { get; set; }
         [Required]
         [MaxLength(50)]

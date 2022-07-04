@@ -14,6 +14,13 @@ namespace EmployeeApp.Library.Helpers
         {
             _context = context;
         }
+        /// <summary>
+        /// Add new employee
+        /// </summary>
+        /// <param name="firstName">Employee`s firstname</param>
+        /// <param name="lastName">Employee`s lastname</param>
+        /// <param name="email">Employee`s email</param>
+        /// <param name="position">Employee`s position</param>
         public async Task AddNewEmployee(string firstName, string lastName, string email, string position)
         {
             var _email = new Email()
@@ -30,6 +37,10 @@ namespace EmployeeApp.Library.Helpers
             await _context.Employees.AddAsync(newEmployee);
             _context.SaveChanges();
         }
+        /// <summary>
+        /// Getting all employees from database
+        /// </summary>
+        /// <returns>IEnumerable<EmployeeModel></returns>
         public IEnumerable<EmployeeModel> GetAllEmployees()
         {
 
@@ -44,6 +55,11 @@ namespace EmployeeApp.Library.Helpers
 
             return _context.Employees.Include(x => x.EmailAdressess).Adapt<IEnumerable<EmployeeModel>>(tac);
         }
+        /// <summary>
+        /// Adding another email to employee
+        /// </summary>
+        /// <param name="id">Employee Id</param>
+        /// <param name="emailAddress">New emial adress</param>
         public void AddEmail(int id, string emailAddress)
         {
             var email = new Email()
@@ -53,6 +69,11 @@ namespace EmployeeApp.Library.Helpers
             _context.Employees.Single(x => x.Id == id).EmailAdressess.Add(email);
             _context.SaveChanges();
         }
+        /// <summary>
+        /// Getting employee with given id
+        /// </summary>
+        /// <param name="id">Employee id</param>
+        /// <returns>Employee</returns>
         public Employee GetEmployeeById(int id)
         {
             return _context.Employees.Single(x => x.Id == id);

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EmployeeApp.Library.Models
 {
-    public class LiderModel
+    public class LeaderModel
     {
         public int Id { get; set; }
         public string FirstName { get; set; }

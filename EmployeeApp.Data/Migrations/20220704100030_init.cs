@@ -36,14 +36,14 @@ namespace EmployeeApp.Data.Migrations
                     LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Position = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
-                    LiderId = table.Column<int>(type: "int", nullable: true)
+                    LeaderId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_People", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_People_People_LiderId",
-                        column: x => x.LiderId,
+                        name: "FK_People_People_LeaderId",
+                        column: x => x.LeaderId,
                         principalTable: "People",
                         principalColumn: "Id");
                 });
@@ -56,7 +56,7 @@ namespace EmployeeApp.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     EmailAddress = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     EmployeeId = table.Column<int>(type: "int", nullable: true),
-                    LiderId = table.Column<int>(type: "int", nullable: true)
+                    LeaderId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -67,8 +67,8 @@ namespace EmployeeApp.Data.Migrations
                         principalTable: "People",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_EmailAdressess_People_LiderId",
-                        column: x => x.LiderId,
+                        name: "FK_EmailAdressess_People_LeaderId",
+                        column: x => x.LeaderId,
                         principalTable: "People",
                         principalColumn: "Id");
                 });
@@ -79,14 +79,14 @@ namespace EmployeeApp.Data.Migrations
                 column: "EmployeeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EmailAdressess_LiderId",
+                name: "IX_EmailAdressess_LeaderId",
                 table: "EmailAdressess",
-                column: "LiderId");
+                column: "LeaderId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_People_LiderId",
+                name: "IX_People_LeaderId",
                 table: "People",
-                column: "LiderId");
+                column: "LeaderId");
         }
 
         /// <inheritdoc />

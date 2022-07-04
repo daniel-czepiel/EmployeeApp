@@ -8,7 +8,7 @@ namespace WPF.ViewModels
     public class AddNewLiderViewModel : MvxViewModel
     {
         private readonly IMvxNavigationService _navigationService;
-        private readonly ILidersData _lidersData;
+        private readonly ILeadersData _lidersData;
 
         public IMvxCommand MenuWindow { get; set; }
         public IMvxCommand ShowEmployeesWindow { get; set; }
@@ -17,7 +17,7 @@ namespace WPF.ViewModels
         public IMvxCommand AddLiderWindow { get; set; }
         public IMvxCommand AddLider { get; set; }
         public IMvxCommand AddEmployeeToLiderWindow { get; set; }
-        public AddNewLiderViewModel(IMvxNavigationService navigationService, ILidersData lidersData)
+        public AddNewLiderViewModel(IMvxNavigationService navigationService, ILeadersData lidersData)
         {
             _navigationService = navigationService;
             _lidersData = lidersData;
@@ -79,7 +79,7 @@ namespace WPF.ViewModels
         #endregion
         public async void AddNewLider()
         {
-            await _lidersData.AddNewLider(Firstname, Lastname, Email);
+            await _lidersData.AddNewLeader(Firstname, Lastname, Email);
         }
     }
 }
